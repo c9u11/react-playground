@@ -194,3 +194,44 @@ const Box = styled.div`
 `;
 ```
 
+## Theme
+
+간단한 예시로 darkmode/lightmode를 만든다고 할 때 App 상위에서 prop을 전달해준다면 매우 편리할것이다.
+
+관리하는 입장에서도 코드를 보는 입장에서도 충분히 이해가 가는 코드가 된다.
+
+theme를 사용하여 상위에서 하위로 따로 prop을 직접적으로 전달하지 않아도 하위에서 사용 할 수 있다.
+
+```react
+import React from "react";
+import ReactDOM from "react-dom";
+import { ThemeProvider } from "styled-components";
+import App from "./App";
+
+const darkTheme = {
+  textColor: "whitesmoke",
+  backgroundColor: "#111",
+};
+const lightTheme = {
+  textColor: "#111",
+  backgroundColor: "whitesmoke",
+};
+
+ReactDOM.render(
+  <React.StrictMode>
+    <ThemeProvider theme={darkTheme}>
+      <App />
+    </ThemeProvider>
+  </React.StrictMode>,
+  document.getElementById("root")
+);
+```
+
+위와 같은 경우에는 theme={}의 내용을 darkTheme과 lightTheme으로만 바꾸었을 때 App 컴포넌트 중 내가 설정한 컴포넌트는 해당 theme의 설정을 따르도록 만들 수 있다.
+
+```react
+  color: ${(props) => props.theme.textColor};
+  background-color: ${(props) => props.theme.backgroundColor};
+```
+
+이는 우리가 단순히 다크모드를 만들 때 뿐만 아니라 여러가지 디자인을 적용 할 때에도 활용이 가능하다.

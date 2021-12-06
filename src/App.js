@@ -6,6 +6,7 @@ const Wrapper = styled.div`
   justify-content: center;
   width: 100vw;
   height: 100vh;
+  background-color: gray;
 `;
 
 const rotationAnimation = keyframes`
@@ -30,7 +31,8 @@ const Emoji = styled.span`
 const Box = styled.div`
   width: 200px;
   height: 200px;
-  background-color: tomato;
+  color: ${(props) => props.theme.textColor};
+  background-color: ${(props) => props.theme.backgroundColor};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,7 +49,7 @@ function App() {
     <Wrapper>
       <Emoji as="p">👻</Emoji>
       <Box>
-        <Emoji as="p">👻</Emoji>
+        <Emoji as="p">Emoji</Emoji>
       </Box>
       <Emoji as="p">👻</Emoji>
     </Wrapper>
