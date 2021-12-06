@@ -1,70 +1,87 @@
-# Getting Started with Create React App
+# Styled Component
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 개요
 
-## Available Scripts
+Styled Component는 기존의 Component와 비슷하게 동작하며 CSS를 따로 관리해주지 않아도 되는 장점을 가진 모듈이다. 
 
-In the project directory, you can run:
+tag 뒤 Backtick 기호를 사용하여 그 안에 css와 동일한 문법으로 디자인을 하면 자동으로 class가 생기며 class에 css가 적용된다.
 
-### `npm start`
+아래를 따라 진행해보면서 styled component를 익혀보자.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+## 설치
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+기본적으로 npm을 사용하여 모듈을 설치해주어야 사용이 가능하다. 아래 커맨드를 복사하여 붙여넣자.
 
-### `npm run build`
+```bash
+npm i styled-components
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 선언
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+모듈 설치가 끝나고 해당 js에서 사용하고자 한다면 import가 필수다. styled라고 선언한다면 사용시 styled.{tag}`{css}`; 와 같이 사용할 수 있다. 선언된 변수는 컴포넌트와 동일하게 사용할 수 있다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```react
+import styeld from "styled-components";
 
-### `npm run eject`
+const StyledComponent = styled.div`
+	display:flex;
+	background-color:tomato;
+	color: white;
+`;
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 사용
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+위에서 말했든 기존 컴포넌트 사용 방법과 동일하다. 아래의 두가지 방법 모두 사용 가능하다.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- <StyledComponent></StyledComponent>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- <StyledComponent/>
 
-## Learn More
+```jsx
+...
+return (
+	<StyledComponent></StyledComponent>
+)
+...
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Prop
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+컴포넌트와 동일하게 Prop이라는 개념을 가지고 있다. 동일한 크기에 배경색깔만 바꾸고 싶을 때 Prop이 없다면 거의 동일한 styled-component를 2번이나 선언해주어야하며 귀찮음이 베이스인 개발자들은 이 모듈을 사용하지 않을것이다.
 
-### Code Splitting
+Prop을 통하여 내가 원하는 값을 넘겨줄 수 있다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```jsx
+const StyledComponent = styled.div`
+	display:flex;
+	background-color:${(props)=>props.bgColor};
+	color: white;
+`;
+...
+return (
+	<StyledComponent bgColor="tomato"></StyledComponent>
+)
+...
+```
 
-### Analyzing the Bundle Size
+## Extend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Prop으로는 부족한 경우가 있다. 물론 Prop으로 아래의 경우를 해결 할 수 있다. 하지만 우리에겐 더 좋은 방법이 있다.
 
-### Making a Progressive Web App
+Box 컴포넌트를 그대로 가져오고 추가로 border-radius만 추가해줄 수 있다. 또한 더 많은 css를 추가 해줄 수 있다. 이때 주의할 점은 styled.(Box)가 아닌 styled(Box)라는 점이다. 이를 잊지않고 기억하자.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```jsx
+const Box = styled.div`
+  background-color: ${(props) => props.bgColor};
+  width: 100px;
+  height: 100px;
+`;
 
-### Advanced Configuration
+const Circle = styled(Box)`
+  border-radius: 50%;
+`;
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
