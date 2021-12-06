@@ -143,7 +143,7 @@ const Box = styled.div`
 `;
 ```
 
-## Child css
+## Child css (/w tagName)
 
 만약 내가 선언한 styled component 안에 일반 태그를 작성하였다면 어떻게 적용하지 걱정 할 필요 없다. 그저 해당 태그 상위의 styled component css에 작성해주면 된다.
 
@@ -160,6 +160,33 @@ const Box = styled.div`
   animation: ${rotationAnimation} 3s linear infinite;
   span {
     font-size: 36px;
+    &:hover {
+      font-size: 72px;
+    }
+  }
+`;
+```
+
+## Child css (/w Component)
+
+위의 방법은 tagName에 의존하기 때문에 하위의 tag가 바뀌면 적용되지 않는 단점이 있다.
+
+이는 아래와 같은 방법으로 해결이 가능하다. 또한 Box 안에만 있는 Component만 새로운 css를 적용 시킬 수 있는 장점도 가지고있다.
+
+```react
+const Emoji = styled.span`
+  font-size: 36px;
+`;
+
+const Box = styled.div`
+  width: 200px;
+  height: 200px;
+  background-color: tomato;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: ${rotationAnimation} 3s linear infinite;
+  ${Emoji} {
     &:hover {
       font-size: 72px;
     }
