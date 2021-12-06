@@ -117,7 +117,7 @@ animation도 적용하고 싶다고 한다면 keyframes를 사용하면 된다.
 
 Styled component와 비슷하게 선언하면 된다. 그리고 ${}안에 내가 선언한 애니메이션을 작성하면 된다.
 
-```react
+```jsx
 const rotationAnimation = keyframes`
   0% {
     transform:rotate(0deg);
@@ -149,7 +149,7 @@ const Box = styled.div`
 
 아래와 같이 태그도 지정 가능하며 span:hover라고 사용하지 않아도 &기호 또는 ^기호를 사용하면 보다 간편하게 작성이 가능하다.
 
-```react
+```jsx
 const Box = styled.div`
   width: 200px;
   height: 200px;
@@ -173,7 +173,7 @@ const Box = styled.div`
 
 이는 아래와 같은 방법으로 해결이 가능하다. 또한 Box 안에만 있는 Component만 새로운 css를 적용 시킬 수 있는 장점도 가지고있다.
 
-```react
+```jsx
 const Emoji = styled.span`
   font-size: 36px;
 `;
@@ -202,7 +202,7 @@ const Box = styled.div`
 
 theme를 사용하여 상위에서 하위로 따로 prop을 직접적으로 전달하지 않아도 하위에서 사용 할 수 있다.
 
-```react
+```jsx
 import React from "react";
 import ReactDOM from "react-dom";
 import { ThemeProvider } from "styled-components";
@@ -229,7 +229,7 @@ ReactDOM.render(
 
 위와 같은 경우에는 theme={}의 내용을 darkTheme과 lightTheme으로만 바꾸었을 때 App 컴포넌트 중 내가 설정한 컴포넌트는 해당 theme의 설정을 따르도록 만들 수 있다.
 
-```react
+```jsx
   color: ${(props) => props.theme.textColor};
   background-color: ${(props) => props.theme.backgroundColor};
 ```
