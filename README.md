@@ -85,3 +85,29 @@ const Circle = styled(Box)`
 `;
 ```
 
+## As
+
+우리가 div라고 선언한 컴포넌트를 button으로 바꾸고 싶다면 한번 더 선언해야 된다고 생각이 든다.
+
+다시 한번 말하지만 개발자들은 귀찮은것을 매우 매우 싫어한다. 이를 해결하기 위해 as라는 Prop이 있다. 여기에 내가 바꾸고자 하는 tag를 적어준다면 마법처럼 해당 컴포넌트는 div가 아니라 button으로 생성이 될 것이다.
+
+```jsx
+...
+return (
+	<StyledComponent as="button"></StyledComponent>
+)
+...
+```
+
+## attrs
+
+지금까지는 스타일과 tag 설정만 다룰 수 있었다. 만약 input에 require이라는 속성을 넣고싶다면 모든 컴포넌트에 속성을 적어줘야 할까?
+
+아니다. attrs를 적고 소괄호 안에 내가 원하는 속성을 object (key-value) 형식으로 적어주면 된다. 두가지 이상 원하는 속성을 넣어도 된다.
+
+```jsx
+const Input = styled.input.attrs({ require: true })`
+  background-color: tomato;
+`;
+```
+
