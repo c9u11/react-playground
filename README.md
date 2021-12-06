@@ -111,3 +111,59 @@ const Input = styled.input.attrs({ require: true })`
 `;
 ```
 
+## Keyframes
+
+animation도 적용하고 싶다고 한다면 keyframes를 사용하면 된다.
+
+Styled component와 비슷하게 선언하면 된다. 그리고 ${}안에 내가 선언한 애니메이션을 작성하면 된다.
+
+```react
+const rotationAnimation = keyframes`
+  0% {
+    transform:rotate(0deg);
+    border-radius:0px;
+  }
+  50% {
+    transform:rotate(360deg);
+    border-radius:50%;
+  }
+  100% {
+    transform:rotate(0deg);
+    border-radius:0px;
+  }
+`;
+const Box = styled.div`
+  width: 200px;
+  height: 200px;
+  background-color: tomato;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: ${rotationAnimation} 3s linear infinite;
+`;
+```
+
+## Child css
+
+만약 내가 선언한 styled component 안에 일반 태그를 작성하였다면 어떻게 적용하지 걱정 할 필요 없다. 그저 해당 태그 상위의 styled component css에 작성해주면 된다.
+
+아래와 같이 태그도 지정 가능하며 span:hover라고 사용하지 않아도 &기호 또는 ^기호를 사용하면 보다 간편하게 작성이 가능하다.
+
+```react
+const Box = styled.div`
+  width: 200px;
+  height: 200px;
+  background-color: tomato;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: ${rotationAnimation} 3s linear infinite;
+  span {
+    font-size: 36px;
+    &:hover {
+      font-size: 72px;
+    }
+  }
+`;
+```
+

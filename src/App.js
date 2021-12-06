@@ -1,22 +1,46 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-const Father = styled.div`
+const Wrapper = styled.div`
   display: flex;
 `;
-const Input = styled.input.attrs({ require: true })`
+
+const rotationAnimation = keyframes`
+  0% {
+    transform:rotate(0deg);
+    border-radius:0px;
+  }
+  50% {
+    transform:rotate(360deg);
+    border-radius:50%;
+  }
+  100% {
+    transform:rotate(0deg);
+    border-radius:0px;
+  }
+`;
+const Box = styled.div`
+  width: 200px;
+  height: 200px;
   background-color: tomato;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: ${rotationAnimation} 3s linear infinite;
+  span {
+    font-size: 36px;
+    &:hover {
+      font-size: 72px;
+    }
+  }
 `;
 
 function App() {
   return (
-    <Father as="header">
-      <Input></Input>
-      <Input></Input>
-      <Input></Input>
-      <Input></Input>
-      <Input></Input>
-      <Input></Input>
-    </Father>
+    <Wrapper>
+      <Box>
+        <span>👻</span>
+      </Box>
+    </Wrapper>
   );
 }
 
