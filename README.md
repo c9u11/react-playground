@@ -14,7 +14,7 @@ tag 뒤 Backtick 기호를 사용하여 그 안에 css와 동일한 문법으로
 
 기본적으로 npm을 사용하여 모듈을 설치해주어야 사용이 가능하다. 아래 커맨드를 복사하여 붙여넣자.
 
-```bash
+```
 npm i styled-components
 ```
 
@@ -22,7 +22,7 @@ npm i styled-components
 
 모듈 설치가 끝나고 해당 js에서 사용하고자 한다면 import가 필수다. styled라고 선언한다면 사용시 styled.{tag}`{css}`; 와 같이 사용할 수 있다. 선언된 변수는 컴포넌트와 동일하게 사용할 수 있다.
 
-```react
+```jsx
 import styeld from "styled-components";
 
 const StyledComponent = styled.div`
