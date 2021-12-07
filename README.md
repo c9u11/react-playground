@@ -44,3 +44,20 @@ console.log(sayHello({name:"nico", age:12}));
 console.log(sayHello({name:"hi", age:12}));
 ```
 
+
+
+## Interface (optional)
+
+```tsx
+interface PlayerShape {
+  name: string;
+  age: number;
+  text?: string;
+}
+
+const sayHello = (playerObj:PlayerShape) => `Hello ${playerObj.name} you are ${playerObj.age} years old. {text ?? "Bye..."}`
+
+console.log(sayHello({name:"nico", age:12, text:"wow!"}));
+console.log(sayHello({name:"hi", age:12}));
+```
+
