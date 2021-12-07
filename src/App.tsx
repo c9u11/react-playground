@@ -1,7 +1,11 @@
+import Circle from "./Circle";
 
 function App() {
   return (
-    <div></div>
+    <div>
+      <Circle bgColor="teal"></Circle>
+      <Circle bgColor="tomato"></Circle>
+    </div>
   );
 }
 
