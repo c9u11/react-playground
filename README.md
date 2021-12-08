@@ -52,7 +52,11 @@ console.log(sayHello({name:"hi", age:12}));
 
 
 
-## Interface (optional)
+## Interface (optional properties)
+
+object에서 해당 키 값을 필수가 아니도록 설정하는 옵션
+
+https://www.typescriptlang.org/docs/handbook/interfaces.html#optional-properties
 
 ```tsx
 interface PlayerShape {
@@ -66,4 +70,24 @@ const sayHello = (playerObj:PlayerShape) => `Hello ${playerObj.name} you are ${p
 console.log(sayHello({name:"nico", age:12, text:"wow!"}));
 console.log(sayHello({name:"hi", age:12}));
 ```
+
+##  
+
+## *Optional chaining
+
+https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-7.html
+
+Optional properties와 동일한 문법이지만 다른 개념이다.
+
+```
+color?: string;
+
+color: string|undefined
+
+>> color : color == undefined || color == null ? undefined : string
+```
+
+Optional chaining는 간단하게 말하자면 위 코드와 아래 코드의 결과가 같다고 보는것이다.
+
+정확한 의미는 3번째 줄을 확인하면 알 수 있다.
 
