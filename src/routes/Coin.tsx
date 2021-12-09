@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router";
+import { Switch, useLocation, useParams, Route, useRouteMatch } from "react-router";
+import Price from "./Price";
+import Chart from "./Chart";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -25,6 +28,9 @@ const Loader = styled.span`
   display: block;
 `;
 
+const Tabs = styled.span<{ isActive: boolean }>`
+  color: ${props => props.isActive ? props.theme.accentColor : props.theme.textColor}
+`;
 interface CoinInterface {
   id: string,
   name: string,
@@ -98,6 +104,8 @@ function Coin() {
   const { state } = useLocation<CoinInterface>();
   const [info, setInfo] = useState<InfoData>();
   const [priceInfo, setpriceInfo] = useState<PriceData>();
+  const priceMatch = useRouteMatch("/:coinId/price");
+  const chartMatch = useRouteMatch("/:coinId/chart");
   useEffect(() => {
     (async () => {
       const infoData = await (await (fetch(`https://api.coinpaprika.com/v1/coins/${coinId}`))).json();
@@ -105,14 +113,35 @@ function Coin() {
       setInfo(infoData);
       setpriceInfo(priceData);
       setLoading(false);
-      console.log(info, priceInfo);
     })();
-  }, [])
+  }, [coinId])
   return <Container>
     <Header>
       <Title>{state?.name || "Loading"}</Title>
     </Header>
-    {loading ? <Loader>Loading...</Loader> : <div>{priceInfo?.quotes.USD.percent_change_24h}</div>}
-  </Container>
+    {loading ? <Loader>Loading...</Loader> :
+      <div>
+        {priceInfo?.quotes.USD.percent_change_24h}
+        <Tabs isActive={priceMatch !== null}>
+          <Link to={`/${coinId}/price`}>
+            price
+          </Link>
+        </Tabs>
+        <Tabs isActive={chartMatch !== null}>
+          <Link to={`/${coinId}/chart`}>
+            Chart
+          </Link>
+        </Tabs>
+        <Switch>
+          <Route path={`/:coinId/price`}>
+            <Price></Price>
+          </Route>
+          <Route path={`/:coinId/chart`}>
+            <Chart></Chart>
+          </Route>
+        </Switch>
+      </div>
+    }
+  </Container >
 }
 export default Coin;
