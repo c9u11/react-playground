@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { fetchCoins } from "../api";
 
@@ -19,10 +18,11 @@ const Header = styled.header`
 
 const CoinsList = styled.ul``;
 const Coin = styled.li`
-  background-color: white;
-  color:${props => props.theme.bgColor};
+  background-color: ${props => props.theme.boxBgColor};
+  color:${props => props.theme.boxTextColor};
   border-radius: 10px;
   margin-bottom: 10px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   a{
       display: flex;
     align-items: center;
@@ -37,8 +37,9 @@ const Coin = styled.li`
 `;
 
 const Title = styled.h1`
-font-size: 48px;
-  color:${props => props.theme.accentColor}
+  font-size: 48px;
+  color:${props => props.theme.primaryTextColor};
+  font-weight: bolder;
 `
 
 const Loader = styled.span`
@@ -84,3 +85,4 @@ function Coins() {
 };
 
 export default Coins;
+

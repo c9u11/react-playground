@@ -1,6 +1,11 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle, DefaultTheme, ThemeProvider } from "styled-components";
 import Router from "./Router";
+import { useState } from "react";
 import { ReactQueryDevtools } from "react-query/devtools"
+import { darkTheme, lightTheme } from "./theme";
+import lightIcon from "./img/light.png";
+import darkIcon from "./img/dark.png";
+
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -58,7 +63,7 @@ font-family: 'Source Sans Pro', sans-serif;
   body {
     font-family: 'Source Sans Pro', sans-serif;
     background-color: ${props => props.theme.bgColor};
-    color: ${props => props.theme.textColor};
+    color: ${props => props.theme.primaryTextColor};
   }
   a {
     text-decoration: none;
@@ -66,13 +71,34 @@ font-family: 'Source Sans Pro', sans-serif;
   }
 `
 function App() {
+
+  const [theme, setTheme] = useState<DefaultTheme>(lightTheme);
+
+  const TopBar = styled.div`
+    width: 100%;
+  `;
+  const ThemeChanger = styled.button`
+    width: 50px;
+    height: 50px;
+    float: right;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    img {
+      width:100%;
+    }
+  `;
+
   return (
-    <>
+    <ThemeProvider theme={theme}>
+      <TopBar>
+        <ThemeChanger onClick={() => setTheme((current) => current === lightTheme ? darkTheme : lightTheme)}><img src={theme === lightTheme ? darkIcon : lightIcon}></img></ThemeChanger>
+      </TopBar>
       <GlobalStyle>
       </GlobalStyle>
       <Router></Router>
       <ReactQueryDevtools initialIsOpen={true} />
-    </>
+    </ThemeProvider>
   );
 }
 

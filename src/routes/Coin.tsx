@@ -1,12 +1,27 @@
-import { useEffect, useState } from "react";
-import { Switch, useLocation, useParams, Route, useRouteMatch } from "react-router";
-import Price from "./Price";
-import Chart from "./Chart";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
-import { fetchCoinInfo, fetchCoins, fetchCoinTickers } from "../api";
 import { Helmet } from "react-helmet";
+import {
+  Switch,
+  Route,
+  useLocation,
+  useParams,
+  useRouteMatch,
+} from "react-router-dom";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { fetchCoinInfo, fetchCoinTickers } from "../api";
+import Chart from "./Chart";
+import Price from "./Price";
+
+const Title = styled.h1`
+  font-size: 48px;
+  color: ${(props) => props.theme.accentColor};
+`;
+
+const Loader = styled.span`
+  text-align: center;
+  display: block;
+`;
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -15,39 +30,75 @@ const Container = styled.div`
 `;
 
 const Header = styled.header`
-  height: 10vh;
+  position: relative;
+  height: 15vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  a {
+    position: absolute;
+    left: 0;
+    font-size: 40px;
+    &:hover {
+      color: ${props => props.theme.accentColor};
+    }
+  }
 `;
 
-const Title = styled.h1`
-font-size: 48px;
-  color:${props => props.theme.accentColor}
-`
+const Overview = styled.div`
+  display: flex;
+  justify-content: space-between;
+  background-color: ${props => props.theme.boxBgColor};
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  padding: 10px 20px;
+  border-radius: 10px;
+`;
+const OverviewItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 33%;
+  span:first-child {
+    font-size: 10px;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+`;
+const Description = styled.p`
+  margin: 20px 0px;
+`;
 
-const Loader = styled.span`
+const Tabs = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 25px 0px;
+  gap: 10px;
+`;
+
+const Tab = styled.span<{ isActive: boolean }>`
   text-align: center;
-  display: block;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 400;
+  background-color: ${props => props.theme.boxBgColor};
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  border-radius: 10px;
+  color: ${(props) =>
+    props.isActive ? props.theme.accentColor : props.theme.boxTextColor};
+  a {
+    padding: 7px 0px;
+    display: block;
+  }
 `;
-
-const Tabs = styled.span<{ isActive: boolean }>`
-  color: ${props => props.isActive ? props.theme.accentColor : props.theme.textColor}
-`;
-interface CoinInterface {
-  id: string,
-  name: string,
-  symbol: string,
-  rank: number,
-  is_new: boolean,
-  is_active: boolean,
-  type: string,
-}
 
 interface RouteParams {
   coinId: string;
 }
-interface IInfoData {
+interface RouteState {
+  name: string;
+}
+interface InfoData {
   id: string;
   name: string;
   symbol: string;
@@ -65,9 +116,9 @@ interface IInfoData {
   org_structure: string;
   hash_algorithm: string;
   first_data_at: string;
-  last_data_: string;
+  last_data_at: string;
 }
-interface ITickersData {
+interface PriceData {
   id: string;
   name: string;
   symbol: string;
@@ -96,50 +147,91 @@ interface ITickersData {
       percent_from_price_ath: number;
       price: number;
       volume_24h: number;
-      volume_24h_change_24: number;
-    }
-  }
+      volume_24h_change_24h: number;
+    };
+  };
 }
 
 function Coin() {
   const { coinId } = useParams<RouteParams>();
-  const { state } = useLocation<CoinInterface>();
+  const { state } = useLocation<RouteState>();
   const priceMatch = useRouteMatch("/:coinId/price");
   const chartMatch = useRouteMatch("/:coinId/chart");
-
-  const { isLoading: infoLoading, data: infoData } = useQuery<IInfoData>(["info", coinId], () => fetchCoinInfo(coinId))
-  const { isLoading: tickersLoading, data: tickersData } = useQuery<ITickersData>(["tickers", coinId], () => fetchCoinTickers(coinId), { refetchInterval: 5000 })
-  const loading = infoLoading || tickersLoading;
-  return <Container>
-    <Helmet>
-      <title>{loading ? "Loading" : coinId}</title>
-    </Helmet>
-    <Header>
-      <Title>{loading ? "Loading" : coinId}</Title>
-    </Header>
-    {loading ? <Loader>Loading...</Loader> :
-      <div>
-        {tickersData?.quotes.USD.percent_change_24h}
-        <Tabs isActive={priceMatch !== null}>
-          <Link to={`/${coinId}/price`}>
-            price
-          </Link>
-        </Tabs>
-        <Tabs isActive={chartMatch !== null}>
-          <Link to={`/${coinId}/chart`}>
-            Chart
-          </Link>
-        </Tabs>
-        <Switch>
-          <Route path={`/:coinId/price`}>
-            <Price></Price>
-          </Route>
-          <Route path={`/:coinId/chart`}>
-            <Chart coinId={coinId}></Chart>
-          </Route>
-        </Switch>
-      </div>
+  const { isLoading: infoLoading, data: infoData } = useQuery<InfoData>(
+    ["info", coinId],
+    () => fetchCoinInfo(coinId)
+  );
+  const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(
+    ["tickers", coinId],
+    () => fetchCoinTickers(coinId),
+    {
+      refetchInterval: 5000,
     }
-  </Container >
+  );
+  const loading = infoLoading || tickersLoading;
+  return (
+    <Container>
+      <Helmet>
+        <title>
+          {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
+        </title>
+      </Helmet>
+      <Header>
+        <Link to="/">&larr;</Link>
+        <Title>
+          {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
+        </Title>
+      </Header>
+      {loading ? (
+        <Loader>Loading...</Loader>
+      ) : (
+        <>
+          <Overview>
+            <OverviewItem>
+              <span>Rank:</span>
+              <span>{infoData?.rank}</span>
+            </OverviewItem>
+            <OverviewItem>
+              <span>Symbol:</span>
+              <span>${infoData?.symbol}</span>
+            </OverviewItem>
+            <OverviewItem>
+              <span>Price:</span>
+              <span>${tickersData?.quotes.USD.price.toFixed(3)}</span>
+            </OverviewItem>
+          </Overview>
+          <Description>{infoData?.description}</Description>
+          <Overview>
+            <OverviewItem>
+              <span>Total Suply:</span>
+              <span>{tickersData?.total_supply}</span>
+            </OverviewItem>
+            <OverviewItem>
+              <span>Max Supply:</span>
+              <span>{tickersData?.max_supply}</span>
+            </OverviewItem>
+          </Overview>
+
+          <Tabs>
+            <Tab isActive={chartMatch !== null}>
+              <Link to={`/${coinId}/chart`}>Chart</Link>
+            </Tab>
+            <Tab isActive={priceMatch !== null}>
+              <Link to={`/${coinId}/price`}>Price</Link>
+            </Tab>
+          </Tabs>
+
+          <Switch>
+            <Route path={`/:coinId/price`}>
+              <Price coinId={coinId} />
+            </Route>
+            <Route path={`/:coinId/chart`}>
+              <Chart coinId={coinId} />
+            </Route>
+          </Switch>
+        </>
+      )}
+    </Container>
+  );
 }
 export default Coin;
