@@ -59,7 +59,7 @@ const Table = styled.table`
 
 function Price({ coinId }: PriceProps) {
   const { isLoading, data: priceData } = useQuery<PriceData>(
-    ["ohlcv", coinId],
+    ["chart", coinId],
     () => fetchCoinTickers(coinId),
     {
       refetchInterval: 10000,
