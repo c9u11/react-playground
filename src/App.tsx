@@ -1,10 +1,11 @@
-import styled, { createGlobalStyle, DefaultTheme, ThemeProvider } from "styled-components";
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import Router from "./Router";
-import { useState } from "react";
 import { ReactQueryDevtools } from "react-query/devtools"
 import { darkTheme, lightTheme } from "./theme";
 import lightIcon from "./img/light.png";
 import darkIcon from "./img/dark.png";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { isDarkAtom } from "./atoms";
 
 
 const GlobalStyle = createGlobalStyle`
@@ -72,8 +73,7 @@ font-family: 'Source Sans Pro', sans-serif;
 `
 function App() {
 
-  const [theme, setTheme] = useState<DefaultTheme>(lightTheme);
-
+  const isDark = useRecoilValue(isDarkAtom)
   const TopBar = styled.div`
     width: 100%;
   `;
@@ -89,10 +89,13 @@ function App() {
     }
   `;
 
+  const setDarkAtom = useSetRecoilState(isDarkAtom);
+  const toggleDarkAtom = () => setDarkAtom(prev => !prev);
+
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
       <TopBar>
-        <ThemeChanger onClick={() => setTheme((current) => current === lightTheme ? darkTheme : lightTheme)}><img src={theme === lightTheme ? darkIcon : lightIcon}></img></ThemeChanger>
+        <ThemeChanger onClick={toggleDarkAtom}><img src={isDark ? lightIcon : darkIcon} alt="Change Theme Botton"></img></ThemeChanger>
       </TopBar>
       <GlobalStyle>
       </GlobalStyle>
