@@ -8,8 +8,7 @@
 
 react와 typescript를 사용하여 다양한 기능을 구현하고 styled components, recoil, library 등을 사용함으로써 project의 기본 구조와 react를 사용함에 있어 조금 더 익숙해 질 수 있는 프로젝트였습니다.
 
-![complete](/Users/seokyoung-hwang/Documents/Code/crypto-tracker/readme/complete.gif)
-
+![complete](https://user-images.githubusercontent.com/29428714/145825174-a4662338-36ca-435a-9fe7-7113be8b666f.gif)
 
 
 ## 기능
