@@ -1,48 +1,60 @@
 import { useForm } from "react-hook-form";
 
-// add todo List using useState
-// function ToDoList() {
-//   const [toDo, setToDo] = useState("");
-//   const onChange = (event: React.FormEvent<HTMLInputElement>) => {
-//     const { currentTarget: { value },
-//     } = event;
-//     setToDo(value);
-//   };
-//   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-//     event.preventDefault();
-//     console.log(toDo);
-//   };
-//   return (
-//     <div>
-//       <form onSubmit={onSubmit}>
-//         <input onChange={onChange} value={toDo} placeholder="Write a to do"></input>
-//         <button>Add</button>
-//       </form>
-//     </div>
-//   );
-// }
+interface IForm {
+  Email: string;
+  FirstName: string;
+  LastName: string;
+  UserName: string;
+  Password: string;
+  PasswordConfirm: string;
+}
 
 function ToDoList() {
-  const { register, handleSubmit, formState } = useForm();
+  const { register, handleSubmit, formState: { errors }, watch } = useForm<IForm>({
+    defaultValues: {
+      Email: "@naver.com",
+    }
+  });
   const onValid = (data: any) => {
     console.log(data);
   };
   // console.log(watch);
-  console.log(formState.errors);
+  // console.log(formState.errors);
   return (
     <div>
       <form style={{ display: "flex", flexDirection: "column" }} onSubmit={handleSubmit(onValid)}>
-        <input {...register("Email", { required: true })} placeholder="Email"></input>
-        <input {...register("FirstName", { required: true })} placeholder="FirstName"></input>
-        <input {...register("LastName", { required: true })} placeholder="LastName"></input>
-        <input {...register("UserName", { required: true, minLength: 10 })} placeholder="UserName"></input>
-        <input {...register("Password", { required: true, minLength: 5 })} placeholder="Password"></input>
+        <input {...register("Email", {
+          required: "Email is required", pattern: {
+            value: /^[A-Za-z0-9._%+-]+@naver.com$/,
+            message: "Only naver.com emails allowed"
+          }
+        })} placeholder="Email"></input>
+        <span>{errors?.Email?.message}</span>
+        <input {...register("FirstName", { required: "FirstName is Required" })} placeholder="FirstName"></input>
+        <span>{errors?.FirstName?.message}</span>
+        <input {...register("LastName", { required: "LastName is Required" })} placeholder="LastName"></input>
+        <span>{errors?.LastName?.message}</span>
+        <input {...register("UserName", {
+          required: "UserName is Required", minLength: {
+            value: 5,
+            message: "Your UserName is too short."
+          }
+        })} placeholder="UserName"></input>
+        <span>{errors?.UserName?.message}</span>
+        <input {...register("Password", {
+          required: "Password is Required", minLength: {
+            value: 5,
+            message: "Your password is too short."
+          }
+        })} placeholder="Password"></input>
+        <span>{errors?.Password?.message}</span>
         <input {...register("PasswordConfirm", {
-          required: "Password is required", minLength: {
+          required: "PasswordConfirm is required", minLength: {
             value: 5,
             message: "Your password is too short."
           }
         })} placeholder="PasswordConfirm"></input>
+        <span>{errors?.PasswordConfirm?.message}</span>
         <button>Add</button>
       </form>
     </div>
