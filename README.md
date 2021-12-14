@@ -1,70 +1,155 @@
-# Getting Started with Create React App
+# TodoList
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 개요
 
-## Available Scripts
+## 기능
 
-In the project directory, you can run:
+## Package
 
-### `npm start`
+### React-hook-form
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Install
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```bash
+npm i react-hook-form
+```
 
-### `npm test`
+#### Import
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+기본적으로 아래와 같이 import 해주면 된다.
 
-### `npm run build`
+```tsx
+import { useForm } from "react-hook-form";
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+우리는 import한 useForm을 사용하여 다양한 변수를 받을 수 있다. 이는 아래에 나열된 항목들이다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Register
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+register는 함수로 name, onBlur, onChange, ref 를 리턴해준다.
 
-### `npm run eject`
+기본적으로 첫번째 인자에 해당 data의 name 값을 받으며 아래와 같이 import 해주면 된다.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```tsx
+const { register } = useForm();
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+console.log(register("data"));
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+이는 input tag에서 아래와 같이 사용할 수 있다. useState를 사용한 예시와 비교해보자.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```tsx
+//useState
+const [toDo, setToDo] = useState("");
+const onChange = (event: React.FormEvent<HTMLInputElement>) => {
+	const { currentTarget: { value },
+  } = event;
+  setToDo(value);
+};
+<input onChange={onChange} value={toDo}></input>
 
-## Learn More
+//react-hook-form
+<input {...register("todo")}/>
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Watch
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+watch는 register를 통하여 등록된 data들을 한번에 모아서 볼 수 있는 함수이다.
 
-### Code Splitting
+```tsx
+const { register, watch } = useForm();
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+console.log(watch());
 
-### Analyzing the Bundle Size
+<input {...register("todo1")}/>
+<input {...register("todo2")}/>
+<input {...register("todo3")}/>
+<input {...register("todo4")}/>
+<input {...register("todo5")}/>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+>> {todo1:"", todo2:"", todo3:"", todo4:"", todo5:""}
+```
 
-### Making a Progressive Web App
+#### HandleSubmit
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+handleSubmit은 form tag에서 onSubmit에 사용된다. 예시는 아래와 같다.
 
-### Advanced Configuration
+```tsx
+const { register, handleSubmit } = useForm();
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+const onValid = (data: any) => {
+  console.log(data);
+};
 
-### Deployment
+<form onSubmit={handleSubmit(onValid)}>
+  <input {...register("todo1")}/>
+  <input {...register("todo2")}/>
+  <input {...register("todo3")}/>
+  <input {...register("todo4")}/>
+  <input {...register("todo5")}/>
+</form>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+>> {todo1:"", todo2:"", todo3:"", todo4:"", todo5:""}
+```
 
-### `npm run build` fails to minify
+위와 같은 예시라면 watch를 쓰면 해결되는거 아닌가 생각이 든다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+하지만 handleSubmit은 regitster의 두번째 인자와 함께 사용할 때 빛을 보인다.
+
+```tsx
+const { register, handleSubmit } = useForm();
+
+const onValid = (data: any) => {
+  console.log(data);
+};
+
+<form onSubmit={handleSubmit(onValid)}>
+  <input {...register("todo1", { required: true })}/>
+  <input {...register("todo2")}/>
+  <input {...register("todo3")}/>
+  <input {...register("todo4")}/>
+  <input {...register("todo5")}/>
+</form>
+
+>> 
+```
+
+만약 todo1 tag에 아무런 내용을 작성하지 않는다면 아래와 같은 결과가 나온다.
+
+- onValid 함수가 실행되지 않음
+- 마우스 커서가 todo1 tag에 focus 됨
+
+이를 바닐라자바스크립트로 개발하거나 react의 useState를 사용한다면 꽤 긴 코드를 작성해야한다. 그리고 input이 많을 수록, 조건이 까다로울수록 그저 키보드만 두들기는 개발자가 된 자신을 볼 수 있다.
+
+#### FormState
+
+formState는 위 handleSubmit과 같이 input의 데이터를 검증하고 그것을 에러로 표시하기 위해 에러의 내용을 확인 하는 용도로 사용된다.
+
+```tsx
+const { register, handleSubmit, formState } = useForm();
+
+const onValid = (data: any) => {
+  console.log(data);
+};
+console.log(formState.errors);
+
+<form onSubmit={handleSubmit(onValid)}>
+  <input {...register("todo1", { required: true })}/>
+  <input {...register("todo2")}/>
+  <input {...register("todo3")}/>
+  <input {...register("todo4")}/>
+  <input {...register("todo5")}/>
+</form>
+
+>> {todo1: {message: "", ref: input, type:"required"}}
+```
+
+위 코드를 보면 친절하게 해당 tag에서 데이터가 어떠한 조건에 따라서 submit이 되지 않았는지 가르쳐준다.
+
+Message 키의 값은 
+
+```
+required:"Todo1 is required"
+```
+
+와 같이 사용하여 바꾸어 줄 수 있다. register의 두번째 인자인 object의 다른 key 값들은 스스로 찿아보자.
