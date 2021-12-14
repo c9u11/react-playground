@@ -7,19 +7,23 @@ interface IForm {
   UserName: string;
   Password: string;
   PasswordConfirm: string;
+  extraError?: string;
 }
 
 function ToDoList() {
-  const { register, handleSubmit, formState: { errors }, watch } = useForm<IForm>({
+  const { register, handleSubmit, formState: { errors }, setError } = useForm<IForm>({
     defaultValues: {
       Email: "@naver.com",
     }
   });
-  const onValid = (data: any) => {
-    console.log(data);
+  const onValid = (data: IForm) => {
+    if (data.Password !== data.PasswordConfirm) {
+      setError("PasswordConfirm", { message: "Password are not the same" }, { shouldFocus: true })
+    }
+    // setError("extraError", { message: "Server offline." })
   };
   // console.log(watch);
-  // console.log(formState.errors);
+  console.log(errors);
   return (
     <div>
       <form style={{ display: "flex", flexDirection: "column" }} onSubmit={handleSubmit(onValid)}>
@@ -38,11 +42,16 @@ function ToDoList() {
           required: "UserName is Required", minLength: {
             value: 5,
             message: "Your UserName is too short."
+          },
+          validate: {
+            noAdmin: (value) => value.includes("admin") ? "no admin allowed" : true,
+            noTest: (value) => value.includes("test") ? "no test allowed" : true,
           }
         })} placeholder="UserName"></input>
         <span>{errors?.UserName?.message}</span>
         <input {...register("Password", {
-          required: "Password is Required", minLength: {
+          required: "Password is Required",
+          minLength: {
             value: 5,
             message: "Your password is too short."
           }
@@ -56,6 +65,9 @@ function ToDoList() {
         })} placeholder="PasswordConfirm"></input>
         <span>{errors?.PasswordConfirm?.message}</span>
         <button>Add</button>
+        <span>
+          {errors?.extraError?.message}
+        </span>
       </form>
     </div>
   );
