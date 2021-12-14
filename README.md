@@ -8,6 +8,10 @@
 
 ### React-hook-form
 
+아래의 기능을 모두 사용하고 추가로 몇가지 기능을 개발한 예시를 보고싶다면 아래 링크를 통하여 readme 파일과 같이 확인 하면 된다.
+
+https://github.com/c9u11/todo-list/tree/16296f8ec8c6b6c5e2d2dbdb35b832aeed626e33
+
 #### Install
 
 ```bash
@@ -148,8 +152,48 @@ console.log(formState.errors);
 
 Message 키의 값은 
 
-```
+```tsx
 required:"Todo1 is required"
 ```
 
 와 같이 사용하여 바꾸어 줄 수 있다. register의 두번째 인자인 object의 다른 key 값들은 스스로 찿아보자.
+
+#### SetError
+
+register의 2번째 인자를 통하여 error를 설정하였지만 내가 원하는 validation 기능이 없을 수 있다.
+
+이때는 setError를 통하여 직접 error를 설정해 줄 수 있다.
+
+```tsx
+interface IForm {
+  Email: string;
+  FirstName: string;
+  LastName: string;
+  UserName: string;
+  Password: string;
+  PasswordConfirm: string;
+  extraError?: string;
+}
+
+const { register, handleSubmit, formState: { errors }, setError } = useForm<IForm>()
+const onValid = (data: IForm) => {
+  if (data.Password !== data.PasswordConfirm) {
+  setError("PasswordConfirm", { message: "Password are not the same" }, { shouldFocus: true })
+  }
+  // setError("extraError", { message: "Server offline." })
+};
+```
+
+위와 같이 첫번째 인자를 통해 어떠한 data에 대한 에러인지 지정이 가능하고 message를 통하여 에러에 대한 내용을 전달 할 수 있다. 또한 shouldFocus를 통해 해당 데이터에 focus 시킬 수 있다.
+
+#### Default Value
+
+아래와 같이 사용한다면 input에 default value를 설정 할 수 있다.
+
+```tsx
+const { register, handleSubmit, formState: { errors }, setError } = useForm<IForm>({
+  defaultValues: {
+  	Email: "@naver.com",
+  }
+});
+```
