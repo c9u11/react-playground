@@ -18,7 +18,7 @@ export const categoryState = atom<Categories>({
 
 export const toDoState = atom<IToDo[]>({
   key: "toDo",
-  default: [],
+  default: JSON.parse(window.localStorage.getItem("ToDos") || "[]"),
 })
 
 export const toDoSelector = selector({

@@ -9,11 +9,13 @@ function ToDo({ text, category, id }: IToDo) {
     setToDos((oldToDos) => {
       const targetIndex = oldToDos.findIndex(toDo => toDo.id === id);
       const newToDo = { text, id, category: name as Categories };
-      return [
+      const newToDos = [
         ...oldToDos.slice(0, targetIndex),
         newToDo,
         ...oldToDos.slice(targetIndex + 1)
       ]
+      window.localStorage.setItem("ToDos", JSON.stringify(newToDos))
+      return newToDos
     })
   }
   return <li>
