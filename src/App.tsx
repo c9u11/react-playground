@@ -1,5 +1,11 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import ToDoList from "./components/ToDoList";
+import { ThemeProvider } from "styled-components";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { isDarkAtom } from "./atoms";
+import lightIcon from "./img/light.png";
+import darkIcon from "./img/dark.png";
+import { darkTheme, lightTheme } from "./theme";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -66,9 +72,34 @@ font-family: 'Source Sans Pro', sans-serif;
 `
 
 function App() {
+
+  const isDark = useRecoilValue(isDarkAtom)
+  const TopBar = styled.div`
+    width: 100%;
+  `;
+  const ThemeChanger = styled.button`
+    width: 50px;
+    height: 50px;
+    float: right;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    img {
+      width:100%;
+    }
+  `;
+
+  const setDarkAtom = useSetRecoilState(isDarkAtom);
+  const toggleDarkAtom = () => setDarkAtom(prev => !prev);
+
   return <>
-    <GlobalStyle />
-    <ToDoList />
+    <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+      <TopBar>
+        <ThemeChanger onClick={toggleDarkAtom}><img src={isDark ? lightIcon : darkIcon} alt="Change Theme Botton"></img></ThemeChanger>
+      </TopBar>
+      <GlobalStyle />
+      <ToDoList />
+    </ThemeProvider>
   </>;
 }
 

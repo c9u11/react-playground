@@ -30,3 +30,8 @@ export const toDoSelector = selector({
     return toDos.filter(toDo => toDo.category === category)
   }
 })
+
+export const isDarkAtom = atom({
+  key: "isDark",
+  default: false,
+})

@@ -1,5 +1,6 @@
 import React from "react";
 import { useSetRecoilState } from "recoil";
+import styled from "styled-components";
 import { Categories, CustomCategories, IToDo, toDoState } from "../atoms";
 
 function ToDo({ text, category, id }: IToDo) {
@@ -29,17 +30,36 @@ function ToDo({ text, category, id }: IToDo) {
       return newToDos
     })
   }
-  return <li>
-    {text}
-    {category !== Categories.TO_DO && <button name={Categories.TO_DO} onClick={setCategory}>ToDo</button>}
-    {category !== Categories.DOING && <button name={Categories.DOING} onClick={setCategory}>Doing</button>}
-    {category !== Categories.DONE && <button name={Categories.DONE} onClick={setCategory}>Done</button>}
-    {CustomCategories.map((customCategory => {
-      if (customCategory === category) return null
-      return <button name={customCategory} key={customCategory} onClick={setCategory}>{customCategory}</button>
+  const Li = styled.li`
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  grid-gap: 20px;
+  `;
+  const Grid = styled.div`
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    button {
+      margin: 1px;
+      background-color: ${props => props.theme.boxBgColor};
+      border: none;
+      border-radius: 5px;
     }
-    ))}
-    <button onClick={deleteToDo}>Delete</button>
-  </li>;
+  `
+  return <Li>
+    <span>{text}</span>
+    <Grid>
+      {category !== Categories.TO_DO && <button name={Categories.TO_DO} onClick={setCategory}>ToDo</button>}
+      {category !== Categories.DOING && <button name={Categories.DOING} onClick={setCategory}>Doing</button>}
+      {category !== Categories.DONE && <button name={Categories.DONE} onClick={setCategory}>Done</button>}
+      {CustomCategories.map((customCategory => {
+        if (customCategory === category) return null
+        return <button name={customCategory} key={customCategory} onClick={setCategory}>{customCategory}</button>
+      }
+      ))}
+      <button onClick={deleteToDo}>Delete</button>
+    </Grid>
+  </Li>;
 }
 export default ToDo
