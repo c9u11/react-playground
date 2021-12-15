@@ -4,7 +4,7 @@ import { Categories, IToDo, toDoState } from "../atoms";
 
 function ToDo({ text, category, id }: IToDo) {
   const setToDos = useSetRecoilState(toDoState);
-  const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const setCategory = (event: React.MouseEvent<HTMLButtonElement>) => {
     const { currentTarget: { name } } = event;
     setToDos((oldToDos) => {
       const targetIndex = oldToDos.findIndex(toDo => toDo.id === id);
@@ -18,11 +18,23 @@ function ToDo({ text, category, id }: IToDo) {
       return newToDos
     })
   }
+  const deleteToDo = () => {
+    setToDos((oldToDos) => {
+      const targetIndex = oldToDos.findIndex(toDo => toDo.id === id);
+      const newToDos = [
+        ...oldToDos.slice(0, targetIndex),
+        ...oldToDos.slice(targetIndex + 1)
+      ]
+      window.localStorage.setItem("ToDos", JSON.stringify(newToDos))
+      return newToDos
+    })
+  }
   return <li>
     {text}
-    {category !== Categories.TO_DO && <button name={Categories.TO_DO} onClick={onClick}>ToDo</button>}
-    {category !== Categories.DOING && <button name={Categories.DOING} onClick={onClick}>Doing</button>}
-    {category !== Categories.DONE && <button name={Categories.DONE} onClick={onClick}>Done</button>}
+    {category !== Categories.TO_DO && <button name={Categories.TO_DO} onClick={setCategory}>ToDo</button>}
+    {category !== Categories.DOING && <button name={Categories.DOING} onClick={setCategory}>Doing</button>}
+    {category !== Categories.DONE && <button name={Categories.DONE} onClick={setCategory}>Done</button>}
+    <button onClick={deleteToDo}>Delete</button>
   </li>;
 }
 export default ToDo
