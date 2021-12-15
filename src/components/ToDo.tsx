@@ -42,7 +42,9 @@ function ToDo({ text, category, id }: IToDo) {
     grid-template-columns: repeat(3, 1fr);
     button {
       margin: 1px;
+      color: ${props => props.theme.boxTextColor};
       background-color: ${props => props.theme.boxBgColor};
+      padding: 3px;
       border: none;
       border-radius: 5px;
     }
