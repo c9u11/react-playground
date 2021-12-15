@@ -47,6 +47,10 @@ function ToDo({ text, category, id }: IToDo) {
       padding: 3px;
       border: none;
       border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      color: ${props => props.theme.accentColor};
     }
   `
   return <Li>
