@@ -5,13 +5,14 @@ export enum Categories {
   "DOING" = "DOING",
   "DONE" = "DONE"
 }
+export const CustomCategories: string[] = JSON.parse(window.localStorage.getItem("categories") || "[]")
 export interface IToDo {
   text: string;
   id: number;
-  category: Categories;
+  category: string;
 }
 
-export const categoryState = atom<Categories>({
+export const categoryState = atom<string>({
   key: "category",
   default: Categories.TO_DO
 })
