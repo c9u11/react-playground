@@ -82,7 +82,19 @@ components의 최종 모습이라고 생각하면 된다. 즉 initial > animate�
 
 ------
 
-## SampleURL
+## Sample
+
+1. Basic animation
+
+   ```tsx
+   <Box transition={{ type: "spring", delay: 0.5 }} initial={{ scale: 0 }} animate={{ scale: 1, rotateZ: 360 }} />
+   ```
+
+![BasicAnimation](https://user-images.githubusercontent.com/29428714/146380923-e2005545-2c04-43de-898e-0c417f1e2956.gif)
+
+
+
+------
 
 ## 기타 해결법
 
