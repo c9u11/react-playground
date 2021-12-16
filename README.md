@@ -1,10 +1,86 @@
 # Animations
 
+------
+
 ## 개요
 
-## 기능
+framer-motion package를 사용하여 애니메이션을 구현해보는 프로젝트이다.
 
-## Package
+
+
+------
+
+## Framer-motion
+
+### Install
+
+```bash
+npm install framer-motion
+```
+
+### Motion import
+
+```tsx
+import { motion } from "framer-motion"
+```
+
+### Create motion tag
+
+기본적으로 아래와 같이 태그를 사용하면된다.
+
+```tsx
+<motion.div><motion.div/>
+```
+
+만약 styled-components와 같이 사용하고싶다면 아래의 예시를 보고 따라하면 된다.
+
+```tsx
+const Box = styled(motion.div)`
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
+`;
+
+...
+<Box/>
+...
+```
+
+### Props
+
+#### Transition
+
+기본적으로 동작에 대한 자세한 설정이나 물리법칙을 적용하는 속성이다.
+
+```tsx
+<Box transition={{ type: "spring", delay: 0.5 }}/>
+```
+
+
+
+#### Initial
+
+components가 rendering 되었을 때 초기의 모습에 대한 설정이다.
+
+```tsx
+<Box initial={{ scale: 0 }}/>
+```
+
+
+
+#### Animate
+
+components의 최종 모습이라고 생각하면 된다. 즉 initial > animate로 설정한 값에 따라서 애니메이션 효과를 부여한다 라고 볼 수 있다.
+
+```tsx
+<Box animate={{ scale: 1, rotateZ: 360 }}/>
+```
+
+
+
+------
 
 ## SampleURL
 
