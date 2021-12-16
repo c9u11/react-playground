@@ -100,6 +100,71 @@ object를 만들어주고 variants에 넣어주기만 하면 끝이다.
 
 그 이후에는 내가 원하는 prop에 원하는 값의 key를 작성해주면 된다.
 
+
+
+또한 아래와 같이 variants와 initial, animate가 부모 컴포넌트에 있다면 framer는 자동으로 아래 코드와 같이 동작한다.
+
+```tsx
+      <Box variants={boxVariants} initial="start" animate="end">
+        <Circle />
+        <Circle />
+        <Circle />
+        <Circle />
+      </Box>
+      
+      <Box variants={boxVariants} initial="start" animate="end">
+        <Circle initial="start" animate="end"/>
+        <Circle initial="start" animate="end"/>
+        <Circle initial="start" animate="end"/>
+        <Circle initial="start" animate="end"/>
+      </Box>
+```
+
+위 사항을 알고 잘 사용한다면 아래와 같이 적용할 수 있다.
+
+여기서 부모의 variants와 자식의 variants 각각의 key name을 동일하게 한다면 우리가 직접 작성하지 않아도 자동으로 적용된다.
+
+```tsx
+const boxVariants = {
+  start: {
+    opacity: 0,
+    scale: 0.5
+  },
+  end: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      type: "spring",
+      duration: 0.5,
+      bounce: 0.5
+    }
+  }
+}
+
+const circleVariants = {
+  start: {
+    scale: 0
+  },
+  end: {
+    scale: 2,
+    transition: {
+      type: "spring",
+      bounce: 0.8
+    }
+  }
+}
+
+...
+<Box variants={boxVariants} initial="start" animate="end">
+  <Circle variants={circleVariants} />
+  <Circle variants={circleVariants} />
+  <Circle variants={circleVariants} />
+  <Circle variants={circleVariants} />
+</Box>
+```
+
+
+
 ------
 
 ## Sample
