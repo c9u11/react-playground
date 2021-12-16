@@ -80,6 +80,26 @@ components의 최종 모습이라고 생각하면 된다. 즉 initial > animate�
 
 
 
+#### Variants
+
+우리는 지금까지 transition, Initial, Animate를 태그 안에 작성했다.
+
+이는 적은 양이라면 문제가 없지만 양이 많아지면 보기도 불편하고 관리도 불편할 것이다. 그렇기에 우리는 variants를 사용하여 해결 할 수 있다.
+
+```tsx
+const myVars = {
+  start: { scale: 0 },
+  end: { scale: 1, rotateZ: 360, transition: { type: "spring", delay: 0.5 } }
+}
+
+...
+<Box variants={myVars} initial="start" animate="end" />
+```
+
+object를 만들어주고 variants에 넣어주기만 하면 끝이다.
+
+그 이후에는 내가 원하는 prop에 원하는 값의 key를 작성해주면 된다.
+
 ------
 
 ## Sample
