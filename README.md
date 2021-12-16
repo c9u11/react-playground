@@ -169,13 +169,61 @@ const circleVariants = {
 
 ## Sample
 
-1. Basic animation
+- Example1
 
-   ```tsx
-   <Box transition={{ type: "spring", delay: 0.5 }} initial={{ scale: 0 }} animate={{ scale: 1, rotateZ: 360 }} />
-   ```
+  ![Example1](https://user-images.githubusercontent.com/29428714/146386253-f4d1d9b2-791e-4d2e-b9db-9ae94a27b920.gif)
 
-![BasicAnimation](https://user-images.githubusercontent.com/29428714/146380923-e2005545-2c04-43de-898e-0c417f1e2956.gif)
+```tsx
+<Box transition={{ type: "spring", delay: 0.5 }} initial={{ scale: 0 }} animate={{ scale: 1, rotateZ: 360 }} />
+```
+
+- Example2
+
+  ![Example2](https://user-images.githubusercontent.com/29428714/146386280-7f760aa9-38a1-4daa-9614-21b726264f73.gif)
+
+```tsx
+const boxVariants = {
+  start: {
+    opacity: 0,
+    scale: 0.5
+  },
+  end: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      type: "spring",
+      duration: 0.5,
+      bounce: 0.5,
+      delayChildren: 0.3,
+      staggerChildren: 0.1
+    }
+  }
+}
+
+const circleVariants = {
+  start: {
+    opacity: 0,
+    y: 10
+  },
+  end: {
+    opacity: 1,
+    y: 0
+  }
+}
+
+function App() {
+  return (
+    <Wrapper>
+      <Box variants={boxVariants} initial="start" animate="end">
+        <Circle variants={circleVariants} />
+        <Circle variants={circleVariants} />
+        <Circle variants={circleVariants} />
+        <Circle variants={circleVariants} />
+      </Box>
+    </Wrapper>
+  );
+}
+```
 
 
 
