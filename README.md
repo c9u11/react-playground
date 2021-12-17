@@ -347,6 +347,41 @@ function App() {
 }
 ```
 
+- Example7
+
+![Example7](https://user-images.githubusercontent.com/29428714/146588103-45d8528b-e689-400e-9e47-cbc2672f0dea.gif)
+
+```tsx
+const boxVariants = {
+  initial: {
+    opacity: 0,
+    scale: 0
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    rotateZ: 360
+  },
+  leaving: {
+    opacity: 0,
+    scale: 0,
+    y: 50
+  }
+}
+function App() {
+  const [showing, setShowing] = useState(false);
+  const toggleShowing = () => setShowing(prev => !prev);
+  return (
+    <Wrapper>
+      <button onClick={toggleShowing}>Click</button>
+      <AnimatePresence>
+        {showing ? <Box variants={boxVariants} initial="initial" animate="visible" exit="leaving"></Box> : null}
+      </AnimatePresence>
+    </Wrapper >
+  );
+}
+```
+
 
 
 ------
