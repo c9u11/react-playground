@@ -275,6 +275,30 @@ function App() {
 }
 ```
 
+- Example5
+
+![Example5](https://user-images.githubusercontent.com/29428714/146580906-5275ad6a-fdf6-4569-9f0f-59ad3802dcc7.gif)
+
+```tsx
+function App() {
+  const x = useMotionValue(0);
+  const scale = useTransform(x, [-200, 0, 200], [2, 1, 0.1]);
+  useEffect(() => {
+    scale.onChange(() => console.log(scale.get()))
+  }, [x])
+  return (
+    <Wrapper>
+      <Box
+        style={{ x, scale }}
+        drag="x"
+        dragSnapToOrigin
+      >
+      </Box>
+    </Wrapper>
+  );
+}
+```
+
 
 
 ------
