@@ -383,7 +383,7 @@ function App() {
 
 - Example8
 
-![Exmple8](https://user-images.githubusercontent.com/29428714/146593177-16058027-dc41-4006-946c-ab62df0de90d.gif)
+![Example8](https://user-images.githubusercontent.com/29428714/146595086-4df3409b-487e-4741-bd67-728e3635cb02.gif)
 
 ```tsx
 const box = {
@@ -432,6 +432,27 @@ function App() {
       </AnimatePresence>
       <button onClick={prevPlease}>Prev</button>
       <button onClick={nextPlease}>Next</button>
+    </Wrapper >
+  );
+}
+```
+
+- Example9
+
+![Example9](https://user-images.githubusercontent.com/29428714/146595089-de97ef40-be9e-4636-9084-fde8fe69427e.gif)
+
+```tsx
+function App() {
+  const [clicked, setClicked] = useState(false);
+  const toggleClicked = () => setClicked(prev => !prev);
+  return (
+    <Wrapper onClick={toggleClicked}>
+      <Box >
+        {!clicked ? <Circle layoutId="circle" style={{ borderRadius: 50, scale: 1 }}></Circle> : null}
+      </Box>
+      <Box >
+        {clicked ? <Circle layoutId="circle" style={{ borderRadius: 0, scale: 2 }}></Circle> : null}
+      </Box>
     </Wrapper >
   );
 }
