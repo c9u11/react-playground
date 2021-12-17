@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { motion, AnimatePresence, animate } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
 const Wrapper = styled(motion.div)`
@@ -16,35 +16,60 @@ const Box = styled(motion.div)`
   background-color: rgba(255,255,255,1);
   border-radius: 15px;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
-  position: fixed;
-  top: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  position:absolute;
+  top: 100px;
 `;
 
-const boxVariants = {
-  initial: {
-    opacity: 0,
-    scale: 0
+const box = {
+  entry: (back: boolean) => {
+    return {
+      x: back ? 200 : -200,
+      opacity: 0,
+      scale: 0,
+    }
   },
-  visible: {
+  center: {
+    x: 0,
     opacity: 1,
     scale: 1,
-    rotateZ: 360
+    transition: {
+      duration: 0.3,
+    }
   },
-  leaving: {
-    opacity: 0,
-    scale: 0,
-    y: 50
+  exit: (back: boolean) => {
+    return {
+      x: back ? -200 : 200,
+      opacity: 0,
+      scale: 0,
+      transition: {
+        duration: 0.3,
+      }
+    }
   }
 }
+
 function App() {
-  const [showing, setShowing] = useState(false);
-  const toggleShowing = () => setShowing(prev => !prev);
+  const [visible, setVisible] = useState(1);
+  const [back, setBack] = useState(false);
+  const nextPlease = () => {
+    setBack(true);
+    setVisible(prev => prev === 10 ? 1 : prev + 1)
+  }
+  const prevPlease = () => {
+    setBack(false);
+    setVisible(prev => prev === 1 ? 10 : prev - 1)
+  }
   return (
     <Wrapper>
-      <button onClick={toggleShowing}>Click</button>
-      <AnimatePresence>
-        {showing ? <Box variants={boxVariants} initial="initial" animate="visible" exit="leaving"></Box> : null}
+      <AnimatePresence exitBeforeEnter custom={back}>
+        <Box custom={back} variants={box} initial="entry" animate="center" exit="exit" key={visible}>{visible}</Box>
       </AnimatePresence>
+      <button onClick={prevPlease}>Prev</button>
+      <button onClick={nextPlease}>Next</button>
     </Wrapper >
   );
 }

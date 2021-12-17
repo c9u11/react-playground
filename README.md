@@ -332,7 +332,6 @@ function App() {
 ![Example6](https://user-images.githubusercontent.com/29428714/146586667-5daa3c39-7258-4189-9c90-270acaa4283f.gif)
 
 ```tsx
-
 const svg = {
   start: { pathLength: 0, fill: "rgba(255,255,255,0)" },
   end: { pathLength: 1, fill: "rgba(255, 255, 255, 1)" },
@@ -377,6 +376,62 @@ function App() {
       <AnimatePresence>
         {showing ? <Box variants={boxVariants} initial="initial" animate="visible" exit="leaving"></Box> : null}
       </AnimatePresence>
+    </Wrapper >
+  );
+}
+```
+
+- Example8
+
+![Exmple8](https://user-images.githubusercontent.com/29428714/146593177-16058027-dc41-4006-946c-ab62df0de90d.gif)
+
+```tsx
+const box = {
+  entry: (back: boolean) => {
+    return {
+      x: back ? 200 : -200,
+      opacity: 0,
+      scale: 0,
+    }
+  },
+  center: {
+    x: 0,
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.3,
+    }
+  },
+  exit: (back: boolean) => {
+    return {
+      x: back ? -200 : 200,
+      opacity: 0,
+      scale: 0,
+      transition: {
+        duration: 0.3,
+      }
+    }
+  }
+}
+
+function App() {
+  const [visible, setVisible] = useState(1);
+  const [back, setBack] = useState(false);
+  const nextPlease = () => {
+    setBack(true);
+    setVisible(prev => prev === 10 ? 1 : prev + 1)
+  }
+  const prevPlease = () => {
+    setBack(false);
+    setVisible(prev => prev === 1 ? 10 : prev - 1)
+  }
+  return (
+    <Wrapper>
+      <AnimatePresence exitBeforeEnter custom={back}>
+        <Box custom={back} variants={box} initial="entry" animate="center" exit="exit" key={visible}>{visible}</Box>
+      </AnimatePresence>
+      <button onClick={prevPlease}>Prev</button>
+      <button onClick={nextPlease}>Next</button>
     </Wrapper >
   );
 }
