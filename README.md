@@ -244,6 +244,37 @@ function App() {
 }
 ```
 
+- Example4
+
+![Example4](https://user-images.githubusercontent.com/29428714/146578481-c0a06e52-9c22-40d3-a90a-4ac1ca32155a.gif)
+
+```tsx
+const boxVariants = {
+  hover: { rotateZ: 90 },
+  click: { borderRadius: "50%" },
+}
+function App() {
+  const biggerBoxRef = useRef<HTMLDivElement>(null)
+  return (
+    <Wrapper>
+      <BiggerBox ref={biggerBoxRef}>
+        <Box
+          drag
+          dragSnapToOrigin
+          dragElastic={0.5}
+          dragConstraints={biggerBoxRef}
+          variants={boxVariants}
+          whileHover="hover"
+          whileTap="click"
+          whileDrag="drag"
+        >
+        </Box>
+      </BiggerBox>
+    </Wrapper>
+  );
+}
+```
+
 
 
 ------
