@@ -299,6 +299,34 @@ function App() {
 }
 ```
 
+- Example5-1
+
+![Example5-1](https://user-images.githubusercontent.com/29428714/146583781-58b4febe-6c30-4f1c-b562-3493c6d72289.gif)
+
+```tsx
+function App() {
+  const x = useMotionValue(0);
+  const rotateZ = useTransform(x, [-200, 200], [-360, 360]);
+  const gradient = useTransform(x, [-200, 0, 200], [
+    'linear-gradient(135deg , rgb(0, 213, 238), rgb(0, 83, 238))',
+    'linear-gradient(135deg , rgb(238, 0, 153), rgb(221, 0, 238))',
+    'linear-gradient(135deg , rgb(0, 238, 155), rgb(238, 178, 0))'
+  ]);
+  const { scrollYProgress } = useViewportScroll();
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 5]);
+  return (
+    <Wrapper style={{ background: gradient }}>
+      <Box
+        style={{ x, rotateZ, scale }}
+        drag="x"
+        dragSnapToOrigin
+      >
+      </Box>
+    </Wrapper >
+  );
+}
+```
+
 
 
 ------
