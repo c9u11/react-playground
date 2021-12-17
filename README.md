@@ -458,7 +458,11 @@ function App() {
 }
 ```
 
+- Example10
 
+![Example10](https://user-images.githubusercontent.com/29428714/146602836-68538cba-d23f-4dc6-a23e-877be3474089.gif)
+
+https://codesandbox.io/s/amazing-http-5k9bm?file=/src/App.js
 
 ------
 
