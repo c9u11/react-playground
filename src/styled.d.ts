@@ -10,7 +10,7 @@ declare module "styled-components" {
     },
     white: {
       lighter: string;
-      dark: string
+      darker: string
     }
   }
 }
