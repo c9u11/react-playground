@@ -73,6 +73,7 @@ const Input = styled(motion.input)`
   border: none;
   right: 0px;
   width: 0px;
+  padding: 10px 0px;
 `;
 
 const navVariants = {
@@ -95,7 +96,7 @@ function Header() {
     if (searchOpen) {
       inputAnimation.start({
         width: 0,
-        padding: 0,
+        padding: "10px 0px",
         marginLeft: 0
       })
     }
@@ -117,7 +118,7 @@ function Header() {
         navAnimation.start("top")
       }
     });
-  }, [scrollY])
+  }, [scrollY, navAnimation])
   return (
     <Nav
       variants={navVariants}
