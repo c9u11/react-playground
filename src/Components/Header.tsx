@@ -136,7 +136,7 @@ function Header() {
       animate={navAnimation}
     >
       <Col>
-        <Icon />
+        <Icon type="whileHover" />
         <Items>
           <Item active={homeMatch?.isExact} >
             <Link to="/">Home {homeMatch?.isExact && <Circle layoutId="circle" />}</Link>

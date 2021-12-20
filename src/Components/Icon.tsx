@@ -21,10 +21,15 @@ const logoVariants = {
   },
 };
 
-function Icon() {
+interface IIcon {
+  type: string;
+}
+
+function Icon({ type }: IIcon) {
   return (
     <Logo
-      whileHover="active"
+      animate={type === "animate" ? "active" : ""}
+      whileHover={type === "whileHover" ? "active" : ""}
       initial="normal"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"

@@ -8,13 +8,13 @@ function App() {
     <Router>
       <Header></Header>
       <Switch>
-        <Route path="/tv">
+        <Route path={["/tv", "/tv/:category/:movieId"]}>
           <Tv></Tv>
         </Route>
         <Route path="/search">
           <Search></Search>
         </Route>
-        <Route path={["/", "/movies/:movieId"]}>
+        <Route path={["/", "/movies/:category/:movieId"]}>
           <Home></Home>
         </Route>
       </Switch>
