@@ -61,5 +61,5 @@ const [loading, setLoading] = useState(true);
 
 ## Example Page
 
-[Example Page]: https://c9u11.github.io/react-playground/coin-tracker/build/index.html
+[Example Page](https://c9u11.github.io/react-playground/coin-tracker/build/index.html)
 
