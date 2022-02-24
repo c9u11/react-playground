@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# Coin Tracker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+react의 기본적인 문법 파악 및 간단한 프로젝트 제작을 목적으로 진행함
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+## React 프로젝트의 기본 구조 이해
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+사용자는 기본적으로 public 폴더의 index.html을 요청하여 첫 페이지를 본다.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+index.html에서 아래 index.js를 import 하고 app.js를 Rendering 한다.
 
-### `npm test`
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+```
 
-### `npm run build`
+이후 App.js에서 자신의 원하는 코드를 작성하면된다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+> App.js 및 index.js는 언제든지 이름을 바꾸어도 괜찮다. 다만 import 부분을 그에 맞게 수정해주어야 한다.
+>
+> 모든 프로젝트의 구조가 위와 같지는 않다. 경우에 따라 App.js에서 router 등으로 프로젝트 구조를 펼칠 수 있다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## useState를 사용하여 loading 구현
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```jsx
+const [loading, setLoading] = useState(true);
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+...
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+{loading ? <strong>Loading...</strong> : <Content/>}
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## useEffect를 사용하여 처음 페이지를 들어왔을 때만 Coin 정보를 가져오는 로직 구현
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```jsx
+  useEffect(() => {
+    fetch("https://api.coinpaprika.com/v1/tickers")
+      .then(res => res.json())
+      .then(json => {
+        setCoins(json);
+        setLoading(false);
+      });
+  }, []);
+```
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+## Example Page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
