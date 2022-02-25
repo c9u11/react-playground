@@ -63,3 +63,5 @@ const [loading, setLoading] = useState(true);
 
 [Example Page](https://c9u11.github.io/react-playground/coin-tracker/build/index.html)
 
+![Feb-25-2022 22-06-40](https://user-images.githubusercontent.com/29428714/155720318-243e428c-e852-4f74-9f45-1c9d31fdd1dd.gif)
+
