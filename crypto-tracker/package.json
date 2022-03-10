@@ -55,5 +55,5 @@
     "@types/react-helmet": "^6.1.4",
     "@types/react-router-dom": "^5.3.2"
   },
-  "homepage": "https://c9u11.github.io/crypto-tracker"
+  "homepage": "./"
 }
