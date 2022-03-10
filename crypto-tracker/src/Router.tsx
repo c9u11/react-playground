@@ -3,7 +3,7 @@ import Coin from "./routes/Coin"
 import Coins from "./routes/Coins"
 
 function Router() {
-  return <BrowserRouter basename="/crypto-tracker">
+  return <BrowserRouter basename="/react-playground/crypto-tracker/build">
     <Switch>
       <Route path="/:coinId">
         <Coin></Coin>
