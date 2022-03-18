@@ -36,6 +36,6 @@ react와 typescript를 사용하여 다양한 기능을 구현하고 styled comp
 
 ## Sample URL
 
-https://c9u11.github.io/crypto-tracker
+https://c9u11.github.io/react-playground/crypto-tracker/build/
 
 (Coin 상세 페이지로 바로 접속 시 404 에러)
