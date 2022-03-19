@@ -6,6 +6,7 @@
 해당 페이지는 가상화폐의 종류와 해당 가상화폐에 대한 다양한 정보를 텍스트 및 차트를 통하여 확인 할 수 있는 사이트입니다.
 
 react와 typescript를 사용하여 다양한 기능을 구현하고 styled components, recoil, library 등을 사용함으로써 project의 기본 구조와 react를 사용함에 있어 조금 더 익숙해 질 수 있는 프로젝트였습니다.
+
 [Github](https://github.com/c9u11/react-playground/tree/master/crypto-tracker) / [Demo](https://c9u11.github.io/react-playground/crypto-tracker/build/)
 
 ## Coin-tracker
