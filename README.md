@@ -17,6 +17,13 @@ react의 기본적인 문법 파악 및 간단한 프로젝트 제작을 목적�
 
 [Github](https://github.com/c9u11/react-playground/tree/master/coin-tracker) / [Demo](https://c9u11.github.io/react-playground/coin-tracker/build/index.html)
 
+## First-react-app
+
+![GIF](https://user-images.githubusercontent.com/29428714/159285713-65ba9646-bf97-41f6-9f13-f4aefb3582b5.gif)
+
+해당 페이지는 React의 useState, useEffect, Component 개념을 익히기 위해 해당 라이브러리를 사용하여 만든 페이지입니다.
+
+[Github](https://github.com/c9u11/react-playground/tree/master/first-react-app) / [Demo](https://c9u11.github.io/react-playground/first-react-app/build/index.html)
 
 
 ## React-for-beginners
