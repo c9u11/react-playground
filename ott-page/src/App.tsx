@@ -5,7 +5,7 @@ import Search from "./Routes/Search";
 import Tv from "./Routes/Tv";
 function App() {
   return (
-    <Router>
+    <Router basename="/react-playground/ott-page/build">
       <Header></Header>
       <Switch>
         <Route path={["/tv", "/tv/:category/:movieId"]}>
