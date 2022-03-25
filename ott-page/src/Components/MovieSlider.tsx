@@ -205,8 +205,8 @@ function Slider({ data, sliderTitle }: ISlider) {
       <SliderWrapper>
         <span>{sliderTitle}</span>
         <AnimatePresence initial={false} onExitComplete={toggleLeaving}>
-          <RowIndexBtn className="left" onClick={decreaseIndex}>&larr;</RowIndexBtn>
-          <RowIndexBtn className="right" onClick={increaseIndex}>&rarr;</RowIndexBtn>
+          <RowIndexBtn key="left" className="left" onClick={decreaseIndex}>&larr;</RowIndexBtn>
+          <RowIndexBtn key="right" className="right" onClick={increaseIndex}>&rarr;</RowIndexBtn>
           <Row
             variants={rowVariants}
             initial="hidden"
