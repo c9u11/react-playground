@@ -1,5 +1,15 @@
 # React Playground
 
+## Ott-page
+![Demo](https://user-images.githubusercontent.com/29428714/161424171-cfb0f041-5cd7-4eb1-8a06-8a3c699327da.gif)
+![Demo2](https://user-images.githubusercontent.com/29428714/161424228-fa28b7e6-b1e0-4c0e-af5b-bfd8da48aa27.gif)
+
+해당 페이지는 가상의 OTT 서비스 사이트를 제작하여 다양한 콘텐츠를 확인 할 수 있는 사이트입니다.
+
+기본적으로 react와 typescript를 사용하여 배웠던 내용을 복습하고 framer-motion 라이브러리를 사용하여 애니메이션 구현, 조금 더 복잡한 route 설정에 집중하여 공부 할 수 있었습니다.
+
+[Github](https://github.com/c9u11/react-playground/tree/master/ott-page) / [Demo](https://c9u11.github.io/react-playground/ott-page/build/)
+
 
 ## Crypto-tracker
 ![complete](https://user-images.githubusercontent.com/29428714/145825174-a4662338-36ca-435a-9fe7-7113be8b666f.gif)
