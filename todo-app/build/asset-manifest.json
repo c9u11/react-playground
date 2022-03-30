@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/react-playground/todo-app/build/static/css/main.8c8b27cf.chunk.css",
+    "main.js": "/react-playground/todo-app/build/static/js/main.c8438277.chunk.js",
+    "main.js.map": "/react-playground/todo-app/build/static/js/main.c8438277.chunk.js.map",
+    "runtime-main.js": "/react-playground/todo-app/build/static/js/runtime-main.04201434.js",
+    "runtime-main.js.map": "/react-playground/todo-app/build/static/js/runtime-main.04201434.js.map",
+    "static/js/2.2c0c3969.chunk.js": "/react-playground/todo-app/build/static/js/2.2c0c3969.chunk.js",
+    "static/js/2.2c0c3969.chunk.js.map": "/react-playground/todo-app/build/static/js/2.2c0c3969.chunk.js.map",
+    "index.html": "/react-playground/todo-app/build/index.html",
+    "static/css/main.8c8b27cf.chunk.css.map": "/react-playground/todo-app/build/static/css/main.8c8b27cf.chunk.css.map",
+    "static/js/2.2c0c3969.chunk.js.LICENSE.txt": "/react-playground/todo-app/build/static/js/2.2c0c3969.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.04201434.js",
+    "static/js/2.2c0c3969.chunk.js",
+    "static/css/main.8c8b27cf.chunk.css",
+    "static/js/main.c8438277.chunk.js"
+  ]
+}
