@@ -30,6 +30,15 @@ react의 기본적인 문법 파악 및 간단한 프로젝트 제작을 목적�
 [Github](https://github.com/c9u11/react-playground/tree/master/coin-tracker) / [Demo](https://c9u11.github.io/react-playground/coin-tracker/build/index.html)
 
 
+## Todo-app
+
+![GIF](https://user-images.githubusercontent.com/29428714/161429578-3092f8af-5b42-4306-b9c8-e83383005d47.gif)
+
+해당 페이지는 React의 useState를 통해 상태를 관리하고 상태에 따른 목록을 보여주는 프로젝트 입니다.
+
+[Github](https://github.com/c9u11/react-playground/tree/master/todo-app) / [Demo](https://c9u11.github.io/react-playground/todo-app/build/)
+
+
 ## First-react-app
 
 ![GIF](https://user-images.githubusercontent.com/29428714/159285713-65ba9646-bf97-41f6-9f13-f4aefb3582b5.gif)

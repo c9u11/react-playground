@@ -25,4 +25,4 @@
 
 ## Sample URL
 
-https://c9u11.github.io/react-playground/todo-app/build/index.html
+https://c9u11.github.io/react-playground/todo-app/build/
