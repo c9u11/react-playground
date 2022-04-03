@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.js": "/react-playground/ott-page/build/static/js/main.d60f4ef9.chunk.js",
+    "main.js.map": "/react-playground/ott-page/build/static/js/main.d60f4ef9.chunk.js.map",
+    "runtime-main.js": "/react-playground/ott-page/build/static/js/runtime-main.f8f5ef3e.js",
+    "runtime-main.js.map": "/react-playground/ott-page/build/static/js/runtime-main.f8f5ef3e.js.map",
+    "static/js/2.fd261100.chunk.js": "/react-playground/ott-page/build/static/js/2.fd261100.chunk.js",
+    "static/js/2.fd261100.chunk.js.map": "/react-playground/ott-page/build/static/js/2.fd261100.chunk.js.map",
+    "index.html": "/react-playground/ott-page/build/index.html",
+    "static/js/2.fd261100.chunk.js.LICENSE.txt": "/react-playground/ott-page/build/static/js/2.fd261100.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f8f5ef3e.js",
+    "static/js/2.fd261100.chunk.js",
+    "static/js/main.d60f4ef9.chunk.js"
+  ]
+}
