@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/react-playground/todo-list/build/static/js/main.76a56802.chunk.js",
+    "main.js.map": "/react-playground/todo-list/build/static/js/main.76a56802.chunk.js.map",
+    "runtime-main.js": "/react-playground/todo-list/build/static/js/runtime-main.6e185087.js",
+    "runtime-main.js.map": "/react-playground/todo-list/build/static/js/runtime-main.6e185087.js.map",
+    "static/js/2.82544c52.chunk.js": "/react-playground/todo-list/build/static/js/2.82544c52.chunk.js",
+    "static/js/2.82544c52.chunk.js.map": "/react-playground/todo-list/build/static/js/2.82544c52.chunk.js.map",
+    "index.html": "/react-playground/todo-list/build/index.html",
+    "static/js/2.82544c52.chunk.js.LICENSE.txt": "/react-playground/todo-list/build/static/js/2.82544c52.chunk.js.LICENSE.txt",
+    "static/media/dark.d7cd1011.png": "/react-playground/todo-list/build/static/media/dark.d7cd1011.png",
+    "static/media/light.0e082f84.png": "/react-playground/todo-list/build/static/media/light.0e082f84.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6e185087.js",
+    "static/js/2.82544c52.chunk.js",
+    "static/js/main.76a56802.chunk.js"
+  ]
+}
