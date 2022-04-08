@@ -9,6 +9,11 @@ tag 뒤 Backtick 기호를 사용하여 그 안에 css와 동일한 문법으로
 아래를 따라 진행해보면서 styled component를 익혀보자.
 
 
+## Sample URL
+
+![Demo](https://user-images.githubusercontent.com/29428714/162623024-1edbc794-6e96-42e2-a770-1a0d794b3211.gif)
+
+https://c9u11.github.io/react-playground/styled-component/build/
 
 ## 설치
 
