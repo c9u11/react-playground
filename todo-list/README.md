@@ -8,11 +8,14 @@
 
 ### React-hook-form
 
-아래의 기능을 모두 사용하고 추가로 몇가지 기능을 개발한 예시를 보고싶다면 아래 링크를 통하여 코드와 지금 보는 readme 파일을 같이 확인 하면 된다.
+아래의 기능을 모두 사용하고 추가로 몇가지 기능을 개발한 예시를 보고싶다면 아래 링크를 통하여 현재 코드와 readme 파일을 같이 확인 하면 된다.
 
-https://github.com/c9u11/todo-list/tree/16296f8ec8c6b6c5e2d2dbdb35b832aeed626e33
+https://c9u11.github.io/react-playground/todo-list/build/
 
-![formExample](https://user-images.githubusercontent.com/29428714/146021665-afbe0951-a2c1-44e9-a362-a8842d755a48.gif)
+![Demo1](https://user-images.githubusercontent.com/29428714/162623345-465c9e1d-f629-4cc5-b9a5-3be00b15a122.gif)
+
+
+![Demo2](https://user-images.githubusercontent.com/29428714/162623384-e4c6d439-ff69-4eb5-8d8c-d52a5e2ffa0a.gif)
 
 #### Install
 
