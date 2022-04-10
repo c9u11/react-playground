@@ -30,6 +30,19 @@ react와 typescript를 사용하여 다양한 기능을 구현하고 styled comp
 해당 페이지는 todo list를 구현한 사이트입니다.
 todo lsit 추가, 삭제, 저장 및 카테고리 추가, 변경의 기능이 있습니다.
 
+[Github](https://github.com/c9u11/react-playground/tree/master/todo-list) / [Demo](https://c9u11.github.io/react-playground/todo-list/build/)
+
+
+## Styled-component
+
+![Demo](https://user-images.githubusercontent.com/29428714/162623024-1edbc794-6e96-42e2-a770-1a0d794b3211.gif)
+
+해당 페이지는 Styled-Component 라이브러리를 사용해보고 공부하는 프로젝트의 결과물입니다.
+공부한 내용은 아래 github의 readme를 참고하시길 바랍니다.
+
+
+[Github](https://github.com/c9u11/react-playground/tree/master/styled-component) / [Demo](https://c9u11.github.io/react-playground/styled-component/build/)
+
 
 ## Coin-tracker
 
