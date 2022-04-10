@@ -1,6 +1,7 @@
 # React Playground
 
 ## Ott-page
+
 ![Demo](https://user-images.githubusercontent.com/29428714/161424171-cfb0f041-5cd7-4eb1-8a06-8a3c699327da.gif)
 ![Demo2](https://user-images.githubusercontent.com/29428714/161424228-fa28b7e6-b1e0-4c0e-af5b-bfd8da48aa27.gif)
 
@@ -12,6 +13,7 @@
 
 
 ## Crypto-tracker
+
 ![complete](https://user-images.githubusercontent.com/29428714/145825174-a4662338-36ca-435a-9fe7-7113be8b666f.gif)
 
 해당 페이지는 가상화폐의 종류와 해당 가상화폐에 대한 다양한 정보를 텍스트 및 차트를 통하여 확인 할 수 있는 사이트입니다.
@@ -19,6 +21,14 @@
 react와 typescript를 사용하여 다양한 기능을 구현하고 styled components, recoil, library 등을 사용함으로써 project의 기본 구조와 react를 사용함에 있어 조금 더 익숙해 질 수 있는 프로젝트였습니다.
 
 [Github](https://github.com/c9u11/react-playground/tree/master/crypto-tracker) / [Demo](https://c9u11.github.io/react-playground/crypto-tracker/build/)
+
+
+## Todo-list
+
+![Demo1](https://user-images.githubusercontent.com/29428714/162623345-465c9e1d-f629-4cc5-b9a5-3be00b15a122.gif)
+
+해당 페이지는 todo list를 구현한 사이트입니다.
+todo lsit 추가, 삭제, 저장 및 카테고리 추가, 변경의 기능이 있습니다.
 
 
 ## Coin-tracker
