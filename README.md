@@ -76,3 +76,9 @@ react의 기본적인 문법 파악 및 간단한 프로젝트 제작을 목적�
 기본적인 리액트 문법을 알아보고 바닐라JS와의 차이점을 확인 해보는 프로젝트
 
 [Github](https://github.com/c9u11/react-playground/tree/master/react-for-beginners)
+
+## Type-script
+
+Typescript를 사용해보고 공부한 내용을 정리한 프로젝트
+
+[Github](https://github.com/c9u11/react-playground/tree/master/typescript)
